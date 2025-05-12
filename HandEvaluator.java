@@ -194,3 +194,37 @@ public class HandEvaluator {
       
     }
 }
+
+
+// Utility functions my work
+public class PokerUtils {
+    // TODO: formatChipAmount() - Display chip values properly
+    public static String formatChipAmount(int chips) {
+        // Format chip amount with commas and dollar sign
+        // Return formatted string (e.g. "$1,000")
+
+        NumberFormat formatter = NumberFormat.getCurrencyInstance(Locale.US);
+        return formatter.format(chips);
+    }
+    
+    // TODO: loadCardImages() - Import card graphics
+    public static Map<String, ImageIcon> loadCardImages() {
+        // Load card images from resources
+        // Create mapping of card names to image icons
+        // Return map for use in UI
+
+        Map<String, ImageIcon> cardImages = new HashMap<>();
+        String[] suits = {"H", "D", "C", "S"}; // Hearts, Diamonds, Clubs, Spades
+        String[] ranks = {"2", "3", "4", "5", "6", "7", "8", "9", "10", "J", "Q", "K", "A"};
+
+        for (String suit : suits) {
+            for (String rank : ranks) {
+                String cardName = rank + suit; // Example: "10H", "QS"
+                String imagePath = "/resources/cards/" + cardName + ".png"; // You can adjust this path
+                cardImages.put(cardName, new ImageIcon(PokerUtils.class.getResource(imagePath)));
+            }
+        }
+
+        return cardImages;
+    }
+}
